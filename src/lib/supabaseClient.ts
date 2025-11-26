@@ -1,10 +1,19 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+declare global {
+    interface Window {
+        __env?: {
+            VITE_SUPABASE_URL?: string;
+            VITE_SUPABASE_ANON_KEY?: string;
+        };
+    }
+}
+
+const supabaseUrl = window.__env?.VITE_SUPABASE_URL || ''
+const supabaseAnonKey = window.__env?.VITE_SUPABASE_ANON_KEY || ''
 
 if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn('Missing Supabase credentials. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env')
+    console.warn('Missing Supabase credentials. Please ensure env-config.js is loaded.')
 }
 
 export const supabase = (supabaseUrl && supabaseAnonKey)
