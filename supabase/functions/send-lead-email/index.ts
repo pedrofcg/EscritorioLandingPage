@@ -30,7 +30,7 @@ const handler = async (request: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev", // Use your verified domain or this for testing
-        to: "cairesgouveia.dpessoal@hotmail.com",
+        to: "pedrofcg23@hotmail.com",
         subject: "Novo Lead Capturado!",
         html: `
           <h1>Novo Lead Capturado</h1>
